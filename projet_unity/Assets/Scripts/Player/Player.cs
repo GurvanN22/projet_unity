@@ -6,10 +6,11 @@ public class Player : MonoBehaviour
 {
 
     public float speed = 4.0f;
+    private GameObject sprite;
     // Start is called before the first frame update
     void Start()
     {
-        
+     sprite = GameObject.FindGameObjectsWithTag("PlayerSprite")[0];   
     }
 
     // Update is called once per frame
@@ -38,7 +39,28 @@ public class Player : MonoBehaviour
         {
             x = +1f;
         }
+
         Vector3 move = new Vector3(x, y, 0).normalized;
         transform.position += move * speed * Time.deltaTime;
+
+        if (x == 0 && y == 0)
+        {
+            // We start idle animation
+            sprite.GetComponent<Animator>().SetBool("IsRunning", false);
+        } else 
+        {
+            // We start running animation
+            sprite.GetComponent<Animator>().SetBool("IsRunning", true);
+            // We rotate the sprite
+            if (x > 0)
+            {
+                sprite.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            if (x < 0)
+            {
+                sprite.GetComponent<SpriteRenderer>().flipX = true;
+            }
+        } 
+        
     }
 }
