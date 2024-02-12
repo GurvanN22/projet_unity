@@ -20,6 +20,9 @@ public class Bullet : MonoBehaviour
 
         float z_axe_rotation = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, z_axe_rotation);
+
+        Invoke("destroy_bullet", 2f);
+        
     }
 
     // Update is called once per frame
@@ -27,10 +30,9 @@ public class Bullet : MonoBehaviour
     {
         
     }
-    void TimeOut()
+    
+    private void destroy_bullet()
     {
-        Invoke("TimeOut", 5f);
-       // We wait 5 seconds before destroying the bullet
         Destroy(gameObject);
     }
 }
