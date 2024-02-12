@@ -34,12 +34,12 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             x = -1f;
-            sprite.GetComponent<SpriteRenderer>().flipX = true;
+            //sprite.GetComponent<SpriteRenderer>().flipX = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
             x = +1f;
-             sprite.GetComponent<SpriteRenderer>().flipX = false;
+            //sprite.GetComponent<SpriteRenderer>().flipX = false;
         }
 
         Vector3 move = new Vector3(x, y, 0).normalized;
