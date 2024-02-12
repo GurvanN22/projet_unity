@@ -35,4 +35,12 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    
+    // We check if the bullet touch any 2d collider 
+    private void OnTriggerEnter2D()
+    {
+        Destroy(gameObject);
+    }
+    
+
 }

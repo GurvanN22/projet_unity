@@ -11,6 +11,8 @@ public class GunHandler : MonoBehaviour
     public Transform fire_point;
     public bool shoot_anable = true;
 
+    public GameObject gun_sprite; 
+
     private float timer;
     public float fire_rate = 0.5f;
 
