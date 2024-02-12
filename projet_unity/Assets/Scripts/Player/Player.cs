@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    public float speed = 4.0f;
+    public float speed = 2.0f;
     private GameObject sprite;
     // Start is called before the first frame update
     void Start()
@@ -34,10 +34,12 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             x = -1f;
+            sprite.GetComponent<SpriteRenderer>().flipX = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
             x = +1f;
+             sprite.GetComponent<SpriteRenderer>().flipX = false;
         }
 
         Vector3 move = new Vector3(x, y, 0).normalized;
@@ -51,15 +53,6 @@ public class Player : MonoBehaviour
         {
             // We start running animation
             sprite.GetComponent<Animator>().SetBool("IsRunning", true);
-            // We rotate the sprite
-            if (x > 0)
-            {
-                sprite.GetComponent<SpriteRenderer>().flipX = false;
-            }
-            if (x < 0)
-            {
-                sprite.GetComponent<SpriteRenderer>().flipX = true;
-            }
         } 
         
     }
