@@ -40,7 +40,7 @@ namespace MyNamespace // Add a namespace to enclose the top-level statements
 
 
 
-        public float speed = 3f; // Vitesse de déplacement de l'ennemi
+        public float speed = 5f; // Vitesse de déplacement de l'ennemi
 
 
         void Rushplayer()
