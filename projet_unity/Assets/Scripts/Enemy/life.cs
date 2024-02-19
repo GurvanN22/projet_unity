@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MyNamespace // Add a namespace to enclose the top-level statements
+namespace MyNamespace 
 {
     public class life : MonoBehaviour
     {
-        // Start is called before the first frame update
 
         public int life_points = 2;
         void Start()
         {
 
         }
-
-        // Update is called once per frame
         void Update()
         {
             Rushplayer();
@@ -40,7 +37,7 @@ namespace MyNamespace // Add a namespace to enclose the top-level statements
 
 
 
-        public float speed = 5f; // Vitesse de déplacement de l'ennemi
+        public float speed = 5f; 
 
 
         void Rushplayer()
@@ -49,23 +46,19 @@ namespace MyNamespace // Add a namespace to enclose the top-level statements
 
             if (player != null)
             {
-                // Déplacement vers le joueur
                 Vector3 direction = player.transform.position - transform.position;
                 transform.Translate(direction.normalized * speed * Time.deltaTime);
 
-                // Vérification de la collision avec le joueur
                 float distance = Vector3.Distance(transform.position, player.transform.position);
-                if (distance < 1f) // Changer cette valeur selon votre besoin
+                if (distance < 1f) 
                 {
-                    // Collision avec le joueur, gérer la mort du joueur ici
                     PlayerDeath();
                 }
             }
         }
 
-        void PlayerDeath() // Remove the 'public' modifier
+        void PlayerDeath() 
         {
-            // À compléter : Gérer la mort du joueur (par exemple, désactiver le joueur, afficher un écran de fin, etc.)
             Debug.Log("Le joueur est mort !");
         }
 
