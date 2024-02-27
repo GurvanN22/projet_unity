@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MyNamespace // Add a namespace to enclose the top-level statements
+namespace MyNamespace 
 {
     public class life : MonoBehaviour
     {
-        // Start is called before the first frame update
 
         public int life_points = 2;
         void Start()
         {
 
         }
-
-        // Update is called once per frame
         void Update()
         {
             Rushplayer();
@@ -63,9 +60,8 @@ namespace MyNamespace // Add a namespace to enclose the top-level statements
             }
         }
 
-        void PlayerDeath() // Remove the 'public' modifier
+        void PlayerDeath() 
         {
-            // À compléter : Gérer la mort du joueur (par exemple, désactiver le joueur, afficher un écran de fin, etc.)
             Debug.Log("Le joueur est mort !");
         }
 
