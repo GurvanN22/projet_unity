@@ -240,8 +240,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8840091351633272843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96e1d38443ff1664ab86ee702ae77d1e, type: 3}
+  m_Script: {fileID: 11500000, guid: ab6ef7e9c7e87a9ffb34a806e1db76fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   life_points: 1
+  speed: 2

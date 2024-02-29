@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 
 
 public class Player : MonoBehaviour
@@ -9,11 +9,17 @@ public class Player : MonoBehaviour
 
     public float speed = 2.0f;
 
+    private int health = 3;
+    private int kills = 0; 
+
+    private GameObject killCounter;
+
     private GameObject sprite;
     // Start is called before the first frame update
     void Start()
     {
-        sprite = GameObject.FindGameObjectsWithTag("PlayerSprite")[0];   
+        sprite = GameObject.FindGameObjectsWithTag("PlayerSprite")[0]; 
+        killCounter = GameObject.FindGameObjectsWithTag("kills")[0];  
     }
 
     // Update is called once per frame
@@ -60,5 +66,29 @@ public class Player : MonoBehaviour
             sprite.GetComponent<Animator>().SetBool("IsRunning", true);
         } 
         
+    }
+
+    public void take_damage(int damage)
+    {
+        health -= damage;
+        print(health);
+        if (health <= 0)
+        {
+            die();
+        }
+    }   
+
+    private void die()
+    {
+        // We should play the death animation
+        // And then destroy the player
+        kills = 0;
+        Destroy(gameObject);
+    }
+
+    public void Add_kill()
+    {
+        kills++;
+        killCounter.GetComponent<TextMeshProUGUI>().text = "Score : " + kills.ToString();
     }
 }
