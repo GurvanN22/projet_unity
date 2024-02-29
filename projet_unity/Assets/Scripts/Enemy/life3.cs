@@ -5,12 +5,12 @@ using UnityEngine.AI;
 
 namespace MyNamespace
 {
-    public class life : MonoBehaviour
+    public class life3 : MonoBehaviour
     {
         [SerializeField] Transform target;
         NavMeshAgent agent;
 
-        public int life_points = 2;
+        public int life_points = 3;
 
         void Start()
         {
