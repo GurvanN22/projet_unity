@@ -6,17 +6,33 @@ public class Player : MonoBehaviour
 {
 
     public float speed = 2.0f;
+    public int bulletNbrMax = 15;
+    public int bulletNbr = 15;
+
+    public GameObject bulletDisplayPrefab;
+
+
     private GameObject sprite;
     // Start is called before the first frame update
     void Start()
     {
-     sprite = GameObject.FindGameObjectsWithTag("PlayerSprite")[0];   
+        sprite = GameObject.FindGameObjectsWithTag("PlayerSprite")[0];   
+        bulletDisplay = GameObject.FindGameObjectsWithTag("ammo")[0];
     }
 
     // Update is called once per frame
     void Update()
     {
         handle_move();
+        handle_reload();
+    }
+
+    private void handle_reload()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            bulletNbr = bulletNbrMax;
+        }
     }
     
     private void handle_move()
@@ -55,5 +71,10 @@ public class Player : MonoBehaviour
             sprite.GetComponent<Animator>().SetBool("IsRunning", true);
         } 
         
+    }
+
+    private void updateShootingDisplay()
+    {
+        bulletDisplay.GetComponent<TextMeshProUGUI>().text = bulletNbr.ToString() + " / " + bulletNbrMax.ToString();
     }
 }
