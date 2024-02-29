@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GunHandler : MonoBehaviour
 {
@@ -16,11 +17,20 @@ public class GunHandler : MonoBehaviour
     private float timer;
     public float fire_rate = 0.5f;
 
+    public int bulletNbrMax = 15;
+    public int bulletNbr = 15;
+    public float reloadTime = 2f;
+
+    private bool reloading = false;
+
+    public GameObject bulletDisplay;
+
 
     // Start is called before the first frame update
     void Start()
     {
         main_camera = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<Camera>();
+        bulletDisplay = GameObject.FindGameObjectsWithTag("ammo")[0];
     }
 
     // Update is called once per frame
@@ -38,7 +48,7 @@ public class GunHandler : MonoBehaviour
         if (!shoot_anable)
         {
             timer += Time.deltaTime;
-            if (timer >= fire_rate)
+            if (timer >= fire_rate && bulletNbr > 0 && !reloading)
             {
                 shoot_anable = true;
                 timer = 0;
@@ -50,6 +60,28 @@ public class GunHandler : MonoBehaviour
         {
             shoot_anable = false;
             Instantiate(bullet, fire_point.position, Quaternion.identity);
+            bulletNbr--;
+            updateShootingDisplay();
         }
+        handle_reload();
+    }
+    
+    private void handle_reload()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && !reloading )
+        {
+            reloading = true;
+            Invoke("FinishReload", reloadTime);
+        }
+    }
+        private void updateShootingDisplay()
+    {
+        bulletDisplay.GetComponent<TextMeshProUGUI>().text = bulletNbr.ToString() + "/" + bulletNbrMax.ToString();
+    }
+    private void FinishReload()
+    {
+        bulletNbr = bulletNbrMax;
+        updateShootingDisplay();
+        reloading = false;
     }
 }
