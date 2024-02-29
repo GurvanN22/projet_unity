@@ -432,7 +432,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 497197902398756322, guid: 068a83dd362573e42b9ff28609ffb3d1, type: 3}
-  spawnTime: 2
+  enemyPrefab1: {fileID: 8840091351633272843, guid: 62f63e37453e08e42a46027a143f097b, type: 3}
+  enemyPrefab2: {fileID: 8840091351633272843, guid: c79eca61253f6c4459317293190f515d, type: 3}
+  spawnTime: 0.3
 --- !u!1 &799388330
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class AppearZone : MonoBehaviour
     public GameObject enemyPrefab1;
 
     public GameObject enemyPrefab2;
-    public float spawnTime = 3f;
+    public float spawnTime = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
