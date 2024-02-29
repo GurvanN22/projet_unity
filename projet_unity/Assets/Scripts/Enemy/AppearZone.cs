@@ -31,16 +31,25 @@ public class AppearZone : MonoBehaviour
 
         // We choose a random enemy prefab to instantiate
         GameObject enemyPrefabToInstantiate = enemyPrefab;
-        int randomNumber = Random.Range(1, 4);
+        int randomNumber = Random.Range(1, 7);
         switch (randomNumber)
         {
             case 1:
                 enemyPrefabToInstantiate = enemyPrefab;
                 break;
             case 2:
-                enemyPrefabToInstantiate = enemyPrefab1;
+                enemyPrefabToInstantiate = enemyPrefab;
                 break;
             case 3:
+                enemyPrefabToInstantiate = enemyPrefab;
+                break;
+            case 4:
+                enemyPrefabToInstantiate = enemyPrefab1;
+                break;
+            case 5:
+                enemyPrefabToInstantiate = enemyPrefab1;
+                break;
+            case 6:
                 enemyPrefabToInstantiate = enemyPrefab2;
                 break;
         }
