@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using TMPro;
 
 public class GunHandler : MonoBehaviour
 {
@@ -15,18 +16,30 @@ public class GunHandler : MonoBehaviour
 
     private float timer;
     public float fire_rate = 0.5f;
+    private bool isAlive = true;
+
+    //public int bulletNbrMax = 15;
+    //public int bulletNbr = 15;
+    //public float reloadTime = 2f;
+
+    private bool reloading = false;
+
+    //public GameObject bulletDisplay;
 
 
     // Start is called before the first frame update
     void Start()
     {
         main_camera = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<Camera>();
+        //bulletDisplay = GameObject.FindGameObjectsWithTag("ammo")[0];
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Code the gun folowing the mouse
+        if (isAlive)
+        {
+            // Code the gun folowing the mouse
         mouse_position = main_camera.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 rotation = mouse_position - transform.position;
@@ -50,6 +63,33 @@ public class GunHandler : MonoBehaviour
         {
             shoot_anable = false;
             Instantiate(bullet, fire_point.position, Quaternion.identity);
+            //bulletNbr--;
+            //updateShootingDisplay();
         }
+        }
+        
+  
     }
+          public void SetDeath()
+        {
+            isAlive = false;
+        }
+    // private void handle_reload()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.R) && !reloading )
+    //     {
+    //         reloading = true;
+    //         Invoke("FinishReload", reloadTime);
+    //     }
+    // }
+    //     private void updateShootingDisplay()
+    // {
+    //     bulletDisplay.GetComponent<TextMeshProUGUI>().text = bulletNbr.ToString() + "/" + bulletNbrMax.ToString();
+    // }
+    // private void FinishReload()
+    // {
+    //     bulletNbr = bulletNbrMax;
+    //     updateShootingDisplay();
+    //     reloading = false;
+    // }
 }
