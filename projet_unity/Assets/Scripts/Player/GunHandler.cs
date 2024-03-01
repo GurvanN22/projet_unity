@@ -16,6 +16,7 @@ public class GunHandler : MonoBehaviour
 
     private float timer;
     public float fire_rate = 0.5f;
+    private bool isAlive = true;
 
     //public int bulletNbrMax = 15;
     //public int bulletNbr = 15;
@@ -36,7 +37,9 @@ public class GunHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Code the gun folowing the mouse
+        if (isAlive)
+        {
+            // Code the gun folowing the mouse
         mouse_position = main_camera.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 rotation = mouse_position - transform.position;
@@ -63,8 +66,14 @@ public class GunHandler : MonoBehaviour
             //bulletNbr--;
             //updateShootingDisplay();
         }
+        }
+        
+  
     }
-    
+          public void SetDeath()
+        {
+            isAlive = false;
+        }
     // private void handle_reload()
     // {
     //     if (Input.GetKeyDown(KeyCode.R) && !reloading )

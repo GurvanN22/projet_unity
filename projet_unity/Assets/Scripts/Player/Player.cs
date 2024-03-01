@@ -13,13 +13,15 @@ public class Player : MonoBehaviour
     private int kills = 0; 
 
     private GameObject killCounter;
-
-    private GameObject sprite;
+    private GunHandler GunHandler;
+    private bool IsAlive = true;
     // Start is called before the first frame update
     void Start()
     {
-        sprite = GameObject.FindGameObjectsWithTag("PlayerSprite")[0]; 
-        killCounter = GameObject.FindGameObjectsWithTag("kills")[0];  
+        killCounter = GameObject.FindGameObjectsWithTag("kills")[0];
+        GunHandler = GameObject.FindGameObjectsWithTag("Gun")[0].GetComponent<GunHandler>();
+        GetComponent<Animator>().SetBool("IsDead", false);
+        GetComponent<Animator>().SetBool("IsWalking", false);
     }
 
     // Update is called once per frame
@@ -52,18 +54,21 @@ public class Player : MonoBehaviour
             x = +1f;
             //sprite.GetComponent<SpriteRenderer>().flipX = false;
         }
-
+        if (!IsAlive)
+        {
+            x = 0;
+            y = 0;
+        }
         Vector3 move = new Vector3(x, y, 0).normalized;
         transform.position += move * speed * Time.deltaTime;
-
         if (x == 0 && y == 0)
         {
             // We start idle animation
-            sprite.GetComponent<Animator>().SetBool("IsRunning", false);
+            GetComponent<Animator>().SetBool("IsWalking", false);
         } else 
         {
             // We start running animation
-            sprite.GetComponent<Animator>().SetBool("IsRunning", true);
+            GetComponent<Animator>().SetBool("IsWalking", true);
         } 
         
     }
@@ -71,20 +76,14 @@ public class Player : MonoBehaviour
     public void take_damage(int damage)
     {
         health -= damage;
-        print(health);
-        if (health <= 0)
+        if (health <= 0 && IsAlive)
         {
-            die();
+            IsAlive = false;
+            GunHandler.SetDeath();
+            GetComponent<Animator>().SetBool("IsDead", true);
         }
     }   
 
-    private void die()
-    {
-        // We should play the death animation
-        // And then destroy the player
-        kills = 0;
-        Destroy(gameObject);
-    }
 
     public void Add_kill()
     {

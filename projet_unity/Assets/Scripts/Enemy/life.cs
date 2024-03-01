@@ -24,7 +24,7 @@ namespace MyNamespace
             playerObject = GameObject.FindGameObjectWithTag("Player");
             target = playerObject.transform;
             playerScript = playerObject.GetComponent<Player>();
-            Invoke("StrickReset", 2f);
+            Invoke("StrickReset", 2.5f);
         }
 
         void Update()
@@ -50,8 +50,7 @@ namespace MyNamespace
                 take_damage(1);
             } else if (other.CompareTag("Player"))
             {
-                Debug.Log("damage taken");
-                Invoke("StrickReset", 1f);
+                Invoke("StrickReset", 1.5f);
                 CanStrick = false;
                 playerScript.take_damage(1);
             }
