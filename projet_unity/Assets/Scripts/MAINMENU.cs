@@ -14,7 +14,7 @@ public class MAINMENU : MonoBehaviour
     }
     public void SettingsBtn()
     {
-        
+        settingsWindow.SetActive(true);
     }
     public void Quit()
     {
